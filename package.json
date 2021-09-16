@@ -1,0 +1,80 @@
+{
+  "name": "school-management",
+  "version": "1.0.0",
+  "description": "A school management project to study domain-driven design pattern.",
+  "main": "index.js",
+  "scripts": {
+    "check": "depcheck --ignores husky,mochawesome,babel-cli,eslint-config-airbnb,eslint-plugin-jsx-a11y,eslint-plugin-react",
+    "start": "node index.js",
+    "pretest": "npm run lint && npm run check",
+    "test": "npm run test:coverage",
+    "test:all": "npm run test:coverage && npm run test:integration",
+    "test:unit": "mocha --recursive test/**/**/**/*.spec.js",
+    "test:integration": "mocha --recursive test/**/**/**/*.spec.js",
+    "test:coverage": "nyc --reporter=text --all mocha --recursive test/**/**/**/*.spec.js",
+    "lint": "eslint *.js .",
+    "lint:fix": "eslint --fix *.js .",
+    "dev": "nodemon index.js",
+    "prepush": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jocabaldini/school-management.git"
+  },
+  "keywords": [
+    "hapi",
+    "javascript"
+  ],
+  "author": "João Carlos de Souza Baldini <jcsbaldini@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/jocabaldini/school-management/issues"
+  },
+  "homepage": "https://github.com/jocabaldini/school-management#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "depcheck": "^1.3.1",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.6",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.2"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "reporter": [
+      "text",
+      "text-summary",
+      "html",
+      "lcov"
+    ],
+    "reporting": {
+      "print": "both"
+    },
+    "include": [
+      "**/adapters/**/*.js"
+    ],
+    "exclude": [
+      "test-report/**/*",
+      "test/**/*",
+      "commons/**/*",
+      "coverage/**/*"
+    ]
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.4",
+    "@hapi/vision": "^6.1.0",
+    "hapi-swaggered": "^3.1.0",
+    "hapi-swaggered-ui": "^3.1.0",
+    "joi": "^17.4.2"
+  }
+}
