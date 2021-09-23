@@ -1,22 +1,13 @@
+const helpers = require('../helpers')
+const student = require('./student')
+
+const dependencies = {
+	helpers,
+}
+
+
 module.exports = () => ({
-	getStudents: (id) => {
-		return  {
-			data: id ? `Retornando estudante #${id}` : 'Retornando estudantes',
-			statusCode: 200,
-		}
-	},
-	createStudent: (student) => {
-		console.log(student)
-		return {
-			data: 'Created',
-			statusCode: 201,
-		}
-	},
-	updateStudent: (student) => {
-		console.log(student)
-		return {
-			data: 'Updated',
-			statusCode: 200,
-		}
-	}
+	getStudents: student(dependencies).getStudents,
+	createStudent: student(dependencies).createStudent,
+	updateStudent: student(dependencies).updateStudent,
 })
