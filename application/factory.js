@@ -4,6 +4,7 @@ const student = require('./student')
 const dependencies = {
 	helpers,
 }
+dependencies.infrastructure = require('../infrastructure')(dependencies)
 
 
 module.exports = () => ({

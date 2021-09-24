@@ -50,6 +50,12 @@ module.exports = (application) => [
 					return res.response('Internal error').code(500)
 				}
 			},
+			validate: {
+				options: {
+					allowUnknown: true,
+				},
+				payload: studentSchemas.post.payload,
+			},
 		},
 	},
 	{

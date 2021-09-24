@@ -1,14 +1,17 @@
 module.exports = (dependencies) => ({
 	getStudents: (id) => {
-		const data = id ? `Retornando estudante #${id}` : 'Retornando estudantes'
+		const data = dependencies.infrastructure.studentRepository.getStudents(id)
+
 		return dependencies.helpers.makeReturn(200, data)
 	},
 	createStudent: (student) => {
-		const data = 'Created a new student'
+		const data = dependencies.infrastructure.studentRepository.createStudent(student)
+		
 		return dependencies.helpers.makeReturn(201, data)
 	},
 	updateStudent: (student) => {
-		const data = 'Updated a student'
+		const data = dependencies.infrastructure.studentRepository.updateStudent(student)
+
 		return dependencies.helpers.makeReturn(200, data)
 	}
 })
