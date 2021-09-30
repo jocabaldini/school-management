@@ -1,5 +1,7 @@
 const joi = require('joi')
-
+const guardian = joi.object().keys({
+	name: joi.string().required(true)
+})
 module.exports = {
 	post: {
 		payload: {
@@ -15,11 +17,7 @@ module.exports = {
 				country: joi.string().required(true),
 			},
 			birthday: joi.string().required(true),
-			guardians:[
-				{
-					name: joi.string().required(true),
-				}
-			]
+			guardians: joi.array().items(guardian).required(true),
 		}
 	},
 	put: {
@@ -36,11 +34,7 @@ module.exports = {
 				country: joi.string().required(true),
 			},
 			birthday: joi.string().required(true),
-			guardians:[
-				{
-					name: joi.string().required(true),
-				}
-			]
+			guardians: joi.array().items(guardian).required(true),
 		}
 	}
 }

@@ -1,3 +1,4 @@
+const Joi = require('joi')
 const studentSchemas = require('./student-schemas')
 
 module.exports = (application) => [
@@ -55,6 +56,17 @@ module.exports = (application) => [
 					allowUnknown: true,
 				},
 				payload: studentSchemas.post.payload,
+				failAction: async (request, h, err) => {
+					if (process.env.NODE_ENV === 'production') {
+					  // In prod, log a limited error message and throw the default Bad Request error.
+					  console.error('ValidationError:', err.message);
+					  throw Boom.badRequest(`Invalid request payload input`);
+					} else {
+					  // During development, log and respond with the full error.
+					  console.error(err);
+					  throw err;
+					}
+				  }
 			},
 		},
 	},
@@ -72,6 +84,56 @@ module.exports = (application) => [
 				} catch (erro) {
 					return res.response('Internal error').code(500)
 				}
+			},
+			validate: {
+				options: {
+					allowUnknown: true,
+				},
+				params: {
+					id: Joi.number()
+					.required()
+					.description('the id for the student'),
+				},
+				payload: studentSchemas.put.payload,
+				failAction: async (request, h, err) => {
+					if (process.env.NODE_ENV === 'production') {
+					  // In prod, log a limited error message and throw the default Bad Request error.
+					  console.error('ValidationError:', err.message);
+					  throw Boom.badRequest(`Invalid request payload input`);
+					} else {
+					  // During development, log and respond with the full error.
+					  console.error(err);
+					  throw err;
+					}
+				  }
+			},
+		},
+	},
+	{
+		path: '/v1/student/{id}',
+		method: 'DELETE',
+		config: {
+			description: 'Delete a student',
+			notes: 'No extra notes',
+			tags: ['student', 'delete', 'api', 'v1'],
+			handler: (req, res) => {
+				try {
+					const ret = application.deleteStudent(req.params.id)
+					return res.response(ret.data).code(ret.statusCode)
+				} catch (erro) {
+					console.log(erro)
+					return res.response('Internal error').code(500)
+				}
+			},
+			validate: {
+				options: {
+					allowUnknown: true,
+				},
+				params: {
+					id: Joi.number()
+					.required()
+					.description('the id for the student'),
+				},
 			},
 		},
 	},

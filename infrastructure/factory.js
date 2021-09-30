@@ -2,10 +2,10 @@ const studentRepository = require('./student-repository')()
 
 module.exports = () => ({
   studentRepository: {
-    getAvailableSpaces: studentRepository.getAvailableSpaces,
+    studentExist: studentRepository.studentExist,
     createStudent: studentRepository.createStudent,
     updateStudent: studentRepository.updateStudent,
+    deleteStudent: studentRepository.deleteStudent,
     getStudents: studentRepository.getStudents,
-    getStudentById: studentRepository.getStudentById,
   },
 })
