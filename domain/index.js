@@ -1,3 +1,3 @@
-const factory = require('./factory')
+const factory = require("./factory")
 
 module.exports = (dependencies) => factory(dependencies)

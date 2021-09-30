@@ -1,4 +1,4 @@
-const studentRepository = require('./student-repository')()
+const studentRepository = require("./student-repository")()
 
 module.exports = () => ({
   studentRepository: {

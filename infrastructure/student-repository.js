@@ -13,7 +13,7 @@ module.exports = () => {
   const getNextId = () => {
     let id = 0
     students.forEach((v) => {
-      id = id < v.id ? id = v.id : id
+      id = id < v.id ? (id = v.id) : id
     })
 
     return ++id
@@ -21,13 +21,13 @@ module.exports = () => {
 
   return {
     studentExist: (id) => students.filter((v) => v.id === id).length > 0,
-    createStudent: (student) =>  {
+    createStudent: (student) => {
       student.id = getNextId()
       students.push(student)
     },
-    updateStudent: (id, student) =>  {
+    updateStudent: (id, student) => {
       student.id = id
-      students = students.map((v) => id === v.id ? student : v)
+      students = students.map((v) => (id === v.id ? student : v))
     },
     getStudents: (id) => {
       if (id) {
@@ -41,6 +41,6 @@ module.exports = () => {
     },
     deleteStudent: (id) => {
       students = students.filter((v) => v.id !== parseInt(id))
-    }
+    },
   }
 }
