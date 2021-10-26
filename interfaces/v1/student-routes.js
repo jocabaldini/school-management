@@ -56,17 +56,6 @@ module.exports = (application) => [
           allowUnknown: true,
         },
         payload: studentSchemas.post.payload,
-        failAction: async (request, h, err) => {
-          if (process.env.NODE_ENV === "production") {
-            // In prod, log a limited error message and throw the default Bad Request error.
-            console.error("ValidationError:", err.message)
-            throw err
-          } else {
-            // During development, log and respond with the full error.
-            console.error(err)
-            throw err
-          }
-        },
       },
     },
   },
@@ -89,9 +78,9 @@ module.exports = (application) => [
         options: {
           allowUnknown: true,
         },
-        params: {
+        params: Joi.object({
           id: Joi.number().required().description("the id for the student"),
-        },
+        }),
         payload: studentSchemas.put.payload,
         failAction: async (request, h, err) => {
           if (process.env.NODE_ENV === "production") {
@@ -126,9 +115,9 @@ module.exports = (application) => [
         options: {
           allowUnknown: true,
         },
-        params: {
+        params: Joi.object({
           id: Joi.number().required().description("the id for the student"),
-        },
+        }),
       },
     },
   },

@@ -4,9 +4,9 @@ const guardian = joi.object().keys({
 })
 module.exports = {
   post: {
-    payload: {
+    payload: joi.object({
       full_name: joi.string().required(true),
-      address: {
+      address: joi.object({
         street: joi.string().required(true),
         number: joi.string().required(true),
         complement: joi.string().required(true),
@@ -15,15 +15,15 @@ module.exports = {
         state: joi.string().required(true),
         zip_code: joi.string().required(true),
         country: joi.string().required(true),
-      },
+      }),
       birthday: joi.string().required(true),
       guardians: joi.array().items(guardian).required(true),
-    },
+    }),
   },
   put: {
-    payload: {
+    payload: joi.object({
       full_name: joi.string().required(true),
-      address: {
+      address: joi.object({
         street: joi.string().required(true),
         number: joi.string().required(true),
         complement: joi.string().required(true),
@@ -32,9 +32,9 @@ module.exports = {
         state: joi.string().required(true),
         zip_code: joi.string().required(true),
         country: joi.string().required(true),
-      },
+      }),
       birthday: joi.string().required(true),
       guardians: joi.array().items(guardian).required(true),
-    },
+    }),
   },
 }

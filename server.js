@@ -1,10 +1,11 @@
 const hapi = require("@hapi/hapi")
 const hapiSwaggered = require("hapi-swaggered")
-const hapiSwaggeredUi = require("hapi-swaggered-ui")
+//const hapiSwaggeredUi = require("hapi-swaggered-ui")
 const hapiVision = require("@hapi/vision")
 const inert = require("@hapi/inert")
 // const joi = require('joi');
 
+const handler = require("./handler")
 const routes = require("./interfaces/v1/index")
 
 const plugins = [
@@ -21,7 +22,7 @@ const plugins = [
       },
     },
   },
-  {
+/*   {
     plugin: hapiSwaggeredUi,
     options: {
       title: "Swagger UI",
@@ -30,7 +31,7 @@ const plugins = [
         validatorUrl: null,
       },
     },
-  },
+  }, */
 ]
 module.exports = async (application) => {
   const server = hapi.server({
@@ -38,6 +39,11 @@ module.exports = async (application) => {
     router: {
       isCaseSensitive: false,
     },
+    routes: {
+      validate: {
+        failAction: handler.handleError
+      }
+    }
   })
   server.realm.modifiers.route.prefix = "/api"
   const allRoutes = routes(application)
