@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "78da1e2d-51ef-4110-ae04-e845e64f7c60",
+		"name": "School Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Student by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/student/{{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"student",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Aluno 3\",\n    \"address\": {\n\t\t\"street\": \"Rua 3\",\n\t\t\"number\": \"3\",\n\t\t\"complement\": \"Complemento 3\",\n\t\t\"neighborhood\": \"Bairro 3\",\n\t\t\"city\": \"Guaxupé\",\n\t\t\"state\": \"MG\",\n\t\t\"zip_code\": \"33333-333\",\n\t\t\"country\": \"Brasil\"\n    },\n    \"birthday\": \"07/07/2016\",\n    \"guardians\": [\n        {\n\t\t    \"name\": \"Guardião 1 do Aluno 3\"\n\t    }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Aluno 2\",\n    \"address\": {\n\t\t\"street\": \"Rua 2\",\n\t\t\"number\": \"2\",\n\t\t\"complement\": \"\",\n\t\t\"neighborhood\": \"Bairro 2\",\n\t\t\"city\": \"Guaxupé\",\n\t\t\"state\": \"MG\",\n\t\t\"zip_code\": \"33333-333\",\n\t\t\"country\": \"Brasil\"\n    },\n    \"birthday\": \"07/07/2016\",\n    \"guardians\": [\n        {\n\t\t    \"name\": \"Guardião 1 do Aluno 2\"\n\t    },\n        {\n\t\t    \"name\": \"Guardião 2 do Aluno 2\"\n\t    }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/student/{{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"student",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/student/{{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"student",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3005"
+		},
+		{
+			"key": "id",
+			"value": "1"
+		}
+	]
+}

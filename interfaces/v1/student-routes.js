@@ -1,5 +1,6 @@
 const Joi = require("joi")
 const studentSchemas = require("./student-schemas")
+const handler = require("../../handler")
 
 module.exports = (application) => [
   {
@@ -13,8 +14,8 @@ module.exports = (application) => [
         try {
           const ret = application.getStudents()
           return res.response(ret.data).code(ret.statusCode)
-        } catch (erro) {
-          return res.response("Internal error").code(500)
+        } catch (err) {
+          return handler.handleError(req, res, err)
         }
       },
     },
@@ -30,8 +31,8 @@ module.exports = (application) => [
         try {
           const ret = application.getStudents(req.params.id)
           return res.response(ret.data).code(ret.statusCode)
-        } catch (erro) {
-          return res.response("Internal error").code(500)
+        } catch (err) {
+          return handler.handleError(req, res, err)
         }
       },
     },
@@ -47,8 +48,8 @@ module.exports = (application) => [
         try {
           const ret = application.createStudent(req.payload)
           return res.response(ret.data).code(ret.statusCode)
-        } catch (erro) {
-          return res.response("Internal error").code(500)
+        } catch (err) {
+          return handler.handleError(req, res, err)
         }
       },
       validate: {
@@ -70,8 +71,8 @@ module.exports = (application) => [
         try {
           const ret = application.updateStudent(req.params.id, req.payload)
           return res.response(ret.data).code(ret.statusCode)
-        } catch (erro) {
-          return res.response("Internal error").code(500)
+        } catch (err) {
+          return handler.handleError(req, res, err)
         }
       },
       validate: {
@@ -81,18 +82,7 @@ module.exports = (application) => [
         params: Joi.object({
           id: Joi.number().required().description("the id for the student"),
         }),
-        payload: studentSchemas.put.payload,
-        failAction: async (request, h, err) => {
-          if (process.env.NODE_ENV === "production") {
-            // In prod, log a limited error message and throw the default Bad Request error.
-            console.error("ValidationError:", err.message)
-            throw err
-          } else {
-            // During development, log and respond with the full error.
-            console.error(err)
-            throw err
-          }
-        },
+        payload: studentSchemas.put.payload
       },
     },
   },
@@ -107,8 +97,8 @@ module.exports = (application) => [
         try {
           const ret = application.deleteStudent(req.params.id)
           return res.response(ret.data).code(ret.statusCode)
-        } catch (erro) {
-          return res.response("Internal error").code(500)
+        } catch (err) {
+          return handler.handleError(req, res, err)
         }
       },
       validate: {

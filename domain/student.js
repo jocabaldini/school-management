@@ -14,9 +14,6 @@ module.exports = (dependencies) => ({
     if (address.number.length === 0) {
       return false
     }
-    if (address.complement.length === 0) {
-      return false
-    }
     if (address.neighborhood.length === 0) {
       return false
     }

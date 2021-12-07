@@ -20,7 +20,7 @@ module.exports = () => {
   }
 
   return {
-    studentExist: (id) => students.filter((v) => v.id === id).length > 0,
+    studentExist: (id) => students.filter((v) => v.id === parseInt(id)).length > 0,
     createStudent: (student) => {
       student.id = getNextId()
       students.push(student)

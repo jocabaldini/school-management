@@ -9,7 +9,7 @@ module.exports = {
       address: joi.object({
         street: joi.string().required(true),
         number: joi.string().required(true),
-        complement: joi.string().required(true),
+        complement: joi.string().allow(""),
         neighborhood: joi.string().required(true),
         city: joi.string().required(true),
         state: joi.string().required(true),
@@ -26,7 +26,7 @@ module.exports = {
       address: joi.object({
         street: joi.string().required(true),
         number: joi.string().required(true),
-        complement: joi.string().required(true),
+        complement: joi.string().allow(""),
         neighborhood: joi.string().required(true),
         city: joi.string().required(true),
         state: joi.string().required(true),
