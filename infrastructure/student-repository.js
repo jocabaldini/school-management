@@ -20,16 +20,18 @@ module.exports = () => {
   }
 
   return {
-    studentExist: (id) => students.filter((v) => v.id === parseInt(id)).length > 0,
-    createStudent: (student) => {
+    studentExist: async (id) => students.filter((v) => v.id === parseInt(id)).length > 0,
+    createStudent: async (student) => {
       student.id = getNextId()
       students.push(student)
+      return student
     },
-    updateStudent: (id, student) => {
+    updateStudent: async (id, student) => {
       student.id = id
       students = students.map((v) => (id === v.id ? student : v))
+      return student
     },
-    getStudents: (id) => {
+    getStudents: async (id) => {
       if (id) {
         const filtered = students.filter((v) => {
           return v.id === parseInt(id)
@@ -39,8 +41,9 @@ module.exports = () => {
       }
       return students
     },
-    deleteStudent: (id) => {
+    deleteStudent: async (id) => {
       students = students.filter((v) => v.id !== parseInt(id))
+      return true
     },
   }
 }

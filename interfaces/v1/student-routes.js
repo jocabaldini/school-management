@@ -10,9 +10,9 @@ module.exports = (application) => [
       description: "Return all students",
       notes: "No extra notes",
       tags: ["student", "get", "api", "v1"],
-      handler: (req, res) => {
+      handler: async (req, res) => {
         try {
-          const ret = application.getStudents()
+          const ret = await application.getStudents()
           return res.response(ret.data).code(ret.statusCode)
         } catch (err) {
           return handler.handleError(req, res, err)
@@ -27,9 +27,9 @@ module.exports = (application) => [
       description: "Return a student by his id",
       notes: "No extra notes",
       tags: ["student", "get", "api", "v1"],
-      handler: (req, res) => {
+      handler: async (req, res) => {
         try {
-          const ret = application.getStudents(req.params.id)
+          const ret = await application.getStudents(req.params.id)
           return res.response(ret.data).code(ret.statusCode)
         } catch (err) {
           return handler.handleError(req, res, err)
@@ -44,9 +44,9 @@ module.exports = (application) => [
       description: "Create a new student",
       notes: "No extra notes",
       tags: ["student", "create", "api", "v1"],
-      handler: (req, res) => {
+      handler: async (req, res) => {
         try {
-          const ret = application.createStudent(req.payload)
+          const ret = await application.createStudent(req.payload)
           return res.response(ret.data).code(ret.statusCode)
         } catch (err) {
           return handler.handleError(req, res, err)
@@ -67,9 +67,9 @@ module.exports = (application) => [
       description: "Update a student",
       notes: "No extra notes",
       tags: ["student", "update", "api", "v1"],
-      handler: (req, res) => {
+      handler: async (req, res) => {
         try {
-          const ret = application.updateStudent(req.params.id, req.payload)
+          const ret = await application.updateStudent(req.params.id, req.payload)
           return res.response(ret.data).code(ret.statusCode)
         } catch (err) {
           return handler.handleError(req, res, err)
@@ -93,9 +93,9 @@ module.exports = (application) => [
       description: "Delete a student",
       notes: "No extra notes",
       tags: ["student", "delete", "api", "v1"],
-      handler: (req, res) => {
+      handler: async (req, res) => {
         try {
-          const ret = application.deleteStudent(req.params.id)
+          const ret = await application.deleteStudent(req.params.id)
           return res.response(ret.data).code(ret.statusCode)
         } catch (err) {
           return handler.handleError(req, res, err)

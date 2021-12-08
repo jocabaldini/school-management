@@ -1,3 +1,3 @@
 module.exports = {
-  makeReturn: (statusCode, data) => ({ statusCode, data }),
+  makeReturn: async (statusCode, data) => ({ statusCode, data }),
 }
