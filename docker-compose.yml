@@ -2,11 +2,12 @@ version: "3.7"
 services:
   api:
     build: .
+    command: npm run dev
     container_name: "school-management-api"
     expose:
       - 3005
     volumes:
-     - ".:/usr/src/app"
+     - .:/usr/src/app
      - "/usr/src/app/node_modules"
     ports:
      - 3000:3005

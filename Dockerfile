@@ -11,6 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
+RUN npm install -g nodemon
 # If you are building your code for production
 # RUN npm ci --only=production
 
@@ -20,8 +21,8 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 # Bundle app source
-COPY . .
+#COPY . .
 COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
 
 #EXPOSE 3005
-CMD [ "./node_modules/nodemon/bin/nodemon.js", "index.js" ]
+#CMD [ "./node_modules/nodemon/bin/nodemon.js", "index.js" ]
