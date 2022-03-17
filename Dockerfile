@@ -21,7 +21,7 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 # Bundle app source
-#COPY . .
+COPY . .
 COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
 
 #EXPOSE 3005
